@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- CSS -->
+
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/styles.css">
+    <title>Ejercicio con Vue</title>
+
+  </head>
+  <body>
+    <div id="app" class="container pt-5 ">
+      <div class="row">
+        <div class="col-lg-8 offset-2 mb-3 text-center">
+          <h1 class="mb-3">{{title}}</h1>
+          <h4 class="mb-3">Autor: Yoangel Eizaga</h4>
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <input class="form-control"  v-model.number="frutaCant" type="number">
+            </div>
+            <input class="form-control" @keyup.enter="addFruta" v-model="frutaName" type="text" placeholder="Ingresa el nombre de una fruta">
+            <div class="input-group-append">
+              <button class="btn btn-success" type="button" v-on:click="addFruta">Agregar</button>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-8 offset-2 mb-3">
+          <ul class="list-group ">
+            <li class="list-group-item d-flex justify-content-between align-items-center" v-for="fruta in frutas" :class="[ fruta.cant <=0 ? 'list-group-item-danger' : '']">
+              {{ fruta.cant }} - {{ fruta.name }}
+              <div>
+                
+              <button v-if="fruta.cant > 0" type="button" class="btn btn-danger" v-on:click="fruta.cant--">-</button>
+              <button v-if="suma <  max" type="button" class="btn btn-info" v-on:click="fruta.cant++">+</button>
+              </div>
+            </li>
+          </ul>
+          <div class="progress">
+            <div  class="progress-bar" role="progressbar" :style="{'width': porcentaje + '%'}" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100" :class="color">
+            <span v-if="porcentaje >= 100">Capacidad Máxima</span>
+            <span v-if="porcentaje < 100">{{ porcentaje }}%</span>
+            </div>
+          </div>
+          <div class="d-flex justify-content-between align-items-center">
+            <h4>Total: <small>{{ suma }}</small></h4>
+
+            <h4>Capacidad máx: <small>{{ max }}</small></h4>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script type="text/javascript" src="js/vue.js" ></script>
+  <script type="text/javascript" src="js/main.js" ></script>
+</html>
